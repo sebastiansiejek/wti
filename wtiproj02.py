@@ -1,5 +1,7 @@
 from wtiproj01_queue import Queue
 import time
+import pandas as pd
+import json
 
 
 class Producer:
@@ -30,3 +32,20 @@ def zad3():
     time.sleep(0.10)
     producer.push("message2")
     consumer.list()
+
+
+def zad4():
+    producer = Producer()
+    consumer = Consumer()
+
+    que = Queue()
+    que.pull()
+
+    data = pd.read_csv('./user_ratedmovies.dat', nrows=100)
+    for index, row in data.iterrows():
+        producer.push(row[0])
+
+    consumer.list()
+
+
+zad4()
