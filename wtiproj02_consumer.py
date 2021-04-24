@@ -10,12 +10,17 @@ class Consumer:
     def list(self):
         self.que.list()
 
-    def async_list(self):
-        timeout = time.time() + 10
 
-        while True:
-            print(datetime.datetime.fromtimestamp(
-                time.time()).strftime('%Y-%m-%d %H:%M:%S'), self.list())
-            time.sleep(0.25)
-            if time.time() > timeout:
-                break
+if __name__ == "__main__":
+
+    consumer = Consumer()
+
+    timeout = time.time() + 10
+
+    while True:
+        print(datetime.datetime.fromtimestamp(
+            time.time()).strftime('%Y-%m-%d %H:%M:%S'))
+        consumer.list()
+        time.sleep(0.4)
+        if time.time() > timeout:
+            break
