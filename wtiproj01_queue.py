@@ -13,9 +13,8 @@ class Queue:
 
     def list(self):
         queue_batch = self.client.lrange(self.que_name, 0, -1)
-        for value_read_from_queue in queue_batch:
-            print("value: ",
-                  json.loads(value_read_from_queue))
+        for i in range(len(queue_batch)):
+            print(i, json.loads(queue_batch[i]))
 
     def pull(self):
         values = self.client.lrange(self.que_name, 0, -1)

@@ -1,24 +1,9 @@
-from wtiproj01_queue import Queue
 import time
 import pandas as pd
 import json
-
-
-class Producer:
-    def __init__(self):
-        self.que = Queue()
-
-    def push(self, message):
-        message_to_write_to_queue_as_dict = message
-        self.que.push(message_to_write_to_queue_as_dict)
-
-
-class Consumer:
-    def __init__(self):
-        self.que = Queue()
-
-    def list(self):
-        self.que.list()
+from wtiproj01_queue import Queue
+from wtiproj02_consumer import Consumer
+from wtiproj02_producer import Producer
 
 
 def zad3():
@@ -43,9 +28,15 @@ def zad4():
 
     data = pd.read_csv('./user_ratedmovies.dat', nrows=100)
     for index, row in data.iterrows():
-        producer.push(row[0])
+        producer.push(row.to_json())
 
     consumer.list()
 
 
+def zad5():
+    consumer = Consumer()
+    consumer.async_list()
+
+
 zad4()
+zad5()
