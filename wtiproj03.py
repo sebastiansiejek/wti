@@ -1,10 +1,10 @@
 import pandas as pd
 
 
-class Lab03:
+class RatedMoviesAndMovieGenresDataFrame:
 
     # zad01
-    def getRatedMoviesAndMovieGenres(self):
+    def getMergedTables(self):
         ratedMovies = pd.read_csv(
             './user_ratedmovies.dat', nrows=100, header=0, delimiter='\t', usecols=['userID', 'movieID', 'rating'])
         movieGenres = pd.read_csv(
@@ -22,5 +22,10 @@ class Lab03:
 
 
 if __name__ == '__main__':
-    lab03 = Lab03()
-    lab03.getratedMoviesAndMovieGenres()
+    lab03 = RatedMoviesAndMovieGenresDataFrame()
+    data = lab03.getMergedTables()
+
+    row_iterator = data.iterrows()
+
+    for row in row_iterator:
+        print(row)
