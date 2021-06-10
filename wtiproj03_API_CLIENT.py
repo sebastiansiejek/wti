@@ -1,6 +1,5 @@
 import requests
 import time
-from API_SERVICE import API_SERVICE
 
 
 class wtiproj03_API_CLIENT:
