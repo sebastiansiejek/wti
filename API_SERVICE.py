@@ -51,8 +51,21 @@ class API_SERVICE:
 
     def getAvgRating(self, user_id):
         response = {}
+
+        dummy_avg_genre_ratings_for_user = {}
+
+        for rawRatingDataItem in self.getAll():
+            if rawRatingDataItem["userID"] == int(user_id):
+                rawRatingDataItemKeys = list(rawRatingDataItem)
+                for rawRatingDataItemKey in rawRatingDataItemKeys:
+                    if rawRatingDataItemKey[:6] == "genre-":
+                        dummy_avg_genre_ratings_for_user[rawRatingDataItemKey] = random.random(
+                        )
+
         response["data"] = {
-            "user_id": user_id
+            "user_id": user_id,
+            "ratings": dummy_avg_genre_ratings_for_user,
+            "message": "User not exists" if not dummy_avg_genre_ratings_for_user.keys() else ""
         }
 
         return response
