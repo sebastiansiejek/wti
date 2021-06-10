@@ -12,12 +12,15 @@ class API_SERVICE:
     def __init__(self):
         self.rawRatingData = self.getAll()
 
-    def get(self, id):
+    def get(self, user_id):
         response = {}
-        response["message"] = ""
-        response["data"] = {
-            "rating_id": id
-        }
+        response["data"] = {}
+
+        for rawRatingDataItem in self.rawRatingData:
+            if(rawRatingDataItem["userID"] == int(user_id)):
+                response["data"] = rawRatingDataItem
+
+        response["message"] = "User not exists" if not response["data"] else ""
 
         return response
 
@@ -54,7 +57,7 @@ class API_SERVICE:
 
         dummy_avg_genre_ratings_for_user = {}
 
-        for rawRatingDataItem in self.getAll():
+        for rawRatingDataItem in self.rawRatingData:
             if rawRatingDataItem["userID"] == int(user_id):
                 rawRatingDataItemKeys = list(rawRatingDataItem)
                 for rawRatingDataItemKey in rawRatingDataItemKeys:
@@ -73,4 +76,4 @@ class API_SERVICE:
 
 if __name__ == '__main__':
     api_service = API_SERVICE()
-    print(api_service.getAvgRatings())
+    print(api_service.get(78))
