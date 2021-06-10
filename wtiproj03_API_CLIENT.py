@@ -1,4 +1,5 @@
 import requests
+import time
 from API_SERVICE import API_SERVICE
 
 
@@ -31,7 +32,11 @@ class wtiproj03_API_CLIENT:
 if __name__ == '__main__':
     client = wtiproj03_API_CLIENT()
     client.getAll()
+    time.sleep(0.01)
     client.get(78)
+    time.sleep(0.01)
     client.delete()
+    time.sleep(0.01)
     client.getAvgRatings()
+    time.sleep(0.01)
     client.getAvgRating(78)
