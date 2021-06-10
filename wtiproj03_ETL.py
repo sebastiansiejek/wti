@@ -5,7 +5,7 @@ from wtiproj03 import RatedMoviesAndMovieGenresDataFrame
 
 if __name__ == '__main__':
     mergedTables = RatedMoviesAndMovieGenresDataFrame()
-    data = mergedTables.getMergedTables()
+    data = mergedTables.getRatedMoviesAndMovieGenres()
 
     row_iterator = data.iterrows()
 

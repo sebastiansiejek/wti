@@ -1,6 +1,7 @@
 import json
 from flask import Flask
 from wtiproj03 import RatedMoviesAndMovieGenresDataFrame
+import random
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -8,9 +9,12 @@ app.config["DEBUG"] = True
 
 class API_SERVICE:
 
+    def __init__(self):
+        self.rawRatingData = []
+
     def get(self, id):
         response = {}
-        response["message"] = "Rating has been added"
+        response["message"] = ""
         response["data"] = {
             "rating_id": id
         }
@@ -18,12 +22,13 @@ class API_SERVICE:
         return response
 
     def getAll(self):
-        data = RatedMoviesAndMovieGenresDataFrame().getMergedTables()
+        data = RatedMoviesAndMovieGenresDataFrame().getRatedMoviesAndMovieGenres()
 
         return data.to_dict('records')
 
     def delete(self):
-        return []
+        self.rawRatingData = []
+        return self.rawRatingData
 
     def create(self, json_data):
         response = {}
@@ -33,10 +38,16 @@ class API_SERVICE:
         return response
 
     def getAvgRatings(self):
-        response = {}
-        response["genre"] = ""
+        dummy_avg_genre_ratings = {}
 
-        return response
+        for rawRatingDataItem in self.getAll():
+            rawRatingDataItemKeys = list(rawRatingDataItem)
+            for rawRatingDataItemKey in rawRatingDataItemKeys:
+                if rawRatingDataItemKey[:6] == "genre-":
+                    dummy_avg_genre_ratings[rawRatingDataItemKey] = random.random(
+                    )
+
+        return dummy_avg_genre_ratings
 
     def getAvgRating(self, user_id):
         response = {}
@@ -49,4 +60,4 @@ class API_SERVICE:
 
 if __name__ == '__main__':
     api_service = API_SERVICE()
-    print(api_service.get())
+    print(api_service.getAvgRatings())

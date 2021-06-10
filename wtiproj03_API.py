@@ -19,7 +19,7 @@ class wtiproj03_API:
     def deleteRatings():
         return jsonify(API_SERVICE().delete())
 
-    @app.route('/ratings', methods=['POST'])
+    @app.route('/rating', methods=['POST'])
     def createRating():
         return API_SERVICE().create(request.json)
 
