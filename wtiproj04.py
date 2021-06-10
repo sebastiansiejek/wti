@@ -28,7 +28,12 @@ class wtiproj04:
 
         return ratedMoviesAndMovieGenres
 
+  # zad2
+    def convertDataFrameToDict(self):
+        return self.getRatedMoviesAndMovieGenres().to_dict('records')
+
 
 if __name__ == '__main__':
     wtiproj04 = wtiproj04()
     print(wtiproj04.getRatedMoviesAndMovieGenres())
+    print(wtiproj04.convertDataFrameToDict())
