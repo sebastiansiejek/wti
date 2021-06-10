@@ -10,7 +10,7 @@ app.config["DEBUG"] = True
 class API_SERVICE:
 
     def __init__(self):
-        self.rawRatingData = []
+        self.rawRatingData = self.getAll()
 
     def get(self, id):
         response = {}
@@ -40,7 +40,7 @@ class API_SERVICE:
     def getAvgRatings(self):
         dummy_avg_genre_ratings = {}
 
-        for rawRatingDataItem in self.getAll():
+        for rawRatingDataItem in self.rawRatingData:
             rawRatingDataItemKeys = list(rawRatingDataItem)
             for rawRatingDataItemKey in rawRatingDataItemKeys:
                 if rawRatingDataItemKey[:6] == "genre-":
