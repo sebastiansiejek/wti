@@ -7,10 +7,6 @@ app.config["DEBUG"] = True
 
 class wtiproj03_API:
 
-    @app.route('/rating/<id>', methods=['GET'])
-    def getRating(id):
-        return jsonify(API_SERVICE().get(id))
-
     @app.route('/ratings', methods=['GET'])
     def getRatings():
         return jsonify(API_SERVICE().getAll())

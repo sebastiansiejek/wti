@@ -8,10 +8,6 @@ class wtiproj03_API_CLIENT:
     def __init__(self):
         self.enpoint = "http://127.0.0.1:5000/"
 
-    def get(self, id):
-        r = requests.get(self.enpoint + "rating/" + str(id))
-        print("rating/" + str(id), r.status_code)
-
     def getAll(self):
         r = requests.get(self.enpoint + "ratings")
         print('ratings/', r.status_code)
@@ -32,8 +28,6 @@ class wtiproj03_API_CLIENT:
 if __name__ == '__main__':
     client = wtiproj03_API_CLIENT()
     client.getAll()
-    time.sleep(0.01)
-    client.get(78)
     time.sleep(0.01)
     client.delete()
     time.sleep(0.01)

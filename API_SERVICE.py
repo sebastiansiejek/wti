@@ -12,18 +12,6 @@ class API_SERVICE:
     def __init__(self):
         self.rawRatingData = self.getAll()
 
-    def get(self, user_id):
-        response = {}
-        response["data"] = {}
-
-        for rawRatingDataItem in self.rawRatingData:
-            if(rawRatingDataItem["userID"] == int(user_id)):
-                response["data"] = rawRatingDataItem
-
-        response["message"] = "User not exists" if not response["data"] else ""
-
-        return response
-
     def getAll(self):
         data = RatedMoviesAndMovieGenresDataFrame().getRatedMoviesAndMovieGenres()
 
@@ -76,4 +64,3 @@ class API_SERVICE:
 
 if __name__ == '__main__':
     api_service = API_SERVICE()
-    print(api_service.get(78))
