@@ -12,6 +12,15 @@ class wtiproj03_API_CLIENT:
         r = requests.get(self.enpoint + "ratings")
         print('ratings/', r.status_code)
 
+    def add(self):
+        r = requests.post(self.enpoint + "rating", data={
+            "Action": 0,
+            "movieID": 3,
+            "rating": 1,
+            "userID": 99
+        })
+        print('add rating/', r.status_code)
+
     def delete(self):
         r = requests.delete(self.enpoint + "ratings")
         print('delete ratings/', r.status_code)
@@ -28,6 +37,8 @@ class wtiproj03_API_CLIENT:
 if __name__ == '__main__':
     client = wtiproj03_API_CLIENT()
     client.getAll()
+    time.sleep(0.01)
+    client.add()
     time.sleep(0.01)
     client.delete()
     time.sleep(0.01)
