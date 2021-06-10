@@ -36,9 +36,15 @@ class wtiproj04:
     def convertDictToDataFrame(self):
         return pd.DataFrame.from_dict(self.convertDataFrameToDict())
 
+  # ex.4
+    def compareDictWithDataFrame(self, dataframe, dict):
+        return True
+
 
 if __name__ == '__main__':
     wtiproj04 = wtiproj04()
     print(wtiproj04.getRatedMoviesAndMovieGenres())
     print(wtiproj04.convertDataFrameToDict())
     print(wtiproj04.convertDictToDataFrame())
+    print(wtiproj04.compareDictWithDataFrame(
+        wtiproj04.convertDataFrameToDict(), wtiproj04.convertDictToDataFrame()))
