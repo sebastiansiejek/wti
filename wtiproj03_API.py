@@ -9,25 +9,26 @@ class wtiproj03_API:
 
     @app.route('/ratings', methods=['GET'])
     def getRatings():
-        return jsonify(API_SERVICE().getAll())
+        return jsonify(api_service.getAll())
 
     @app.route('/ratings', methods=['DELETE'])
     def deleteRatings():
-        return jsonify(API_SERVICE().delete())
+        return jsonify(api_service.delete())
 
     @app.route('/rating', methods=['POST'])
     def createRating():
-        return API_SERVICE().create(request.json)
+        return api_service.create(request.json)
 
     @app.route('/avg-genre-ratings/all-users', methods=['GET'])
     def getAvgRatings():
-        return API_SERVICE().getAvgRatings()
+        return api_service.getAvgRatings()
 
     @app.route('/avg-genre-ratings/user/<user_id>', methods=['GET'])
     def getAvgRating(user_id):
-        return API_SERVICE().getAvgRating(user_id)
+        return api_service.getAvgRating(user_id)
 
 
 if __name__ == '__main__':
     wtiproj03_API()
+    api_service = API_SERVICE()
     app.run()

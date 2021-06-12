@@ -10,12 +10,11 @@ app.config["DEBUG"] = True
 class API_SERVICE:
 
     def __init__(self):
-        self.rawRatingData = self.getAll()
+        self.rawRatingData = RatedMoviesAndMovieGenresDataFrame(
+        ).getRatedMoviesAndMovieGenres().to_dict('records')
 
     def getAll(self):
-        data = RatedMoviesAndMovieGenresDataFrame().getRatedMoviesAndMovieGenres()
-
-        return data.to_dict('records')
+        return self.rawRatingData
 
     def delete(self):
         self.rawRatingData = []
@@ -25,6 +24,8 @@ class API_SERVICE:
         response = {}
         response["message"] = "Rating has been added"
         response["data"] = json_data
+
+        self.rawRatingData.append(json_data)
 
         return response
 
